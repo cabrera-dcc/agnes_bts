@@ -1,0 +1,47 @@
+/*
+* Theme Name: Agnes BTS (Default);
+* Description: Default theme for Agnes, the bug tracking system (https://github.com/cabrera-dcc/agnes_bts);
+* Author: cabrera_dcc (https://github.com/cabrera_dcc);
+* Author URI: http://cabrera-dcc/github.io;
+* Version: Beta-1 (rev. 20150331);
+* Copyright: Copyright (c) 2015, Daniel Cabrera Cebrero;
+* License: MIT License;
+* License URI: http://opensource.org/licenses/MIT;
+*/
+
+@-moz-document url-prefix() {
+  	fieldset { display: table-cell; }
+}
+
+body{
+	min-width: 320px;
+}
+
+#filters{
+	margin-bottom: 10px;
+}
+
+#form-section{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+footer{
+	float: bottom;
+}
+
+#nav-description{
+	margin-right: 15px;
+}
+
+table{
+	text-align: center;
+}
+
+textarea{
+	resize: none;
+}
+
+th{
+	text-align: center;
+}
