@@ -5,8 +5,7 @@
  * Functions to connect to MYSQL database using PHP Data Objects (PDO) and interact with it.
  * db_functions.php from https://github.com/cabrera-dcc/agnes_bts 
  *
- * @package agnes_bts.tickets
- * @author cabrera_dcc (http://cabrera-dcc/github.io)
+ * @author cabrera-dcc (http://cabrera-dcc/github.io)
  * @copyright Copyright (c) 2015, Daniel Cabrera Cebrero
  * @license GNU General Public License (GPLv3 - https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE)
  * @version Beta-1 (rev. 20150402)
@@ -28,7 +27,7 @@ function connectDB()
 }
 
 
-function insert_task($nombre,$prioridad,$asignatario,$responsable,$descripcion,$observaciones)
+function insert_ticket($nombre,$prioridad,$asignatario,$responsable,$descripcion,$observaciones)
 {
 	$query = "INSERT INTO tickets (nombre, estado, prioridad, asignatario, responsable, descripcion, observaciones)
 		VALUES ('".$nombre."','Pendiente','".$prioridad."','".$asignatario."','".$responsable."','".$descripcion."','".$observaciones."')";

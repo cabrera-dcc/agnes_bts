@@ -1,3 +1,12 @@
+<?php
+	if(isset($_GET['option']) && ($_GET['option'] == "info" || $_GET['option'] == "edit")){
+		$load = true;
+		include("tickets/load_info.php");
+	}
+	else{
+		$load = false;
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,7 +14,7 @@
 	<meta name="application-name" content="Agnes"/>
 	<meta name="description" content="Sistema de Seguimiento de Errores"/>
 	<meta name="author" content="Daniel Cabrera Cebrero (http://cabrera-dcc.github.io)"/>
-	<meta name="version" content="Beta-1 (rev. 20150402)"/>
+	<meta name="version" content="Beta-1 (rev. 20150404)"/>
 	<meta name="keywords" content="bts, bug, incident, traking, ticket"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>Agnes | BTS</title>
@@ -28,7 +37,7 @@
 				    	<label for="inputTitle" class="control-label text-uppercase">Título</label>
 				    	<div class="input-group">
 				    		<span class="input-group-addon"><span class="glyphicon glyphicon-pushpin"></span></span>
-				      		<input name="nombre" type="text" class="form-control input-sm" id="inputTitle" placeholder="Título de la tarea"/>
+				      		<input name="nombre" type="text" class="form-control input-sm" id="inputTitle" placeholder="Título de la tarea" value="<?php if($load==true){load_name();}?>" required/>
 				      	</div>
 				  	</div>
 				
@@ -36,7 +45,7 @@
 				    	<label for="inputPriority" class="control-label text-uppercase">Prioridad</label>
 				    	<div class="input-group">
 				    		<span class="input-group-addon"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
-				      		<select class="form-control input-sm" name="prioridad" id="inputPriority">
+				      		<select class="form-control input-sm" name="prioridad" id="inputPriority" value="<?php if($load==true){load_priority();}?>">
 								<option value="Normal">Normal</option>
 								<option value="Baja">Baja</option>
 								<option value="Alta">Alta</option>
@@ -48,7 +57,7 @@
 				    	<label for="inputRef" class="control-label text-uppercase">Referencia</label>
 				    	<div class="input-group">
 				    		<span class="input-group-addon"><span class="glyphicon glyphicon-certificate"></span></span>
-				      		<input type="text" class="form-control input-sm" id="inputRef" placeholder="#" disabled="disabled"/>
+				      		<input type="text" class="form-control input-sm" id="inputRef" placeholder="#" disabled="disabled" value="<?php if($load==true){load_ref();}?>" required/>
 						</div>
 				  	</div>
 				
@@ -56,7 +65,7 @@
 				    	<label for="inputTarget" class="control-label text-uppercase">Asignatario</label>
 				    	<div class="input-group">
 				    		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-				      		<input name="asignatario" type="text" class="form-control input-sm" id="inputTarget" placeholder="Asignado a..." required/>
+				      		<input name="asignatario" type="text" class="form-control input-sm" id="inputTarget" placeholder="Asignado a..." value="<?php if($load==true){load_designate();}?>" required/>
 						</div>
 				  	</div>
 			  	
@@ -64,18 +73,18 @@
 				    	<label for="inputBoss" class="control-label text-uppercase">Responsable</label>
 				    	<div class="input-group">
 				    		<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-				      		<input name="responsable" type="text" class="form-control input-sm" id="inputBoss" placeholder="Asigna" required/>
+				      		<input name="responsable" type="text" class="form-control input-sm" id="inputBoss" placeholder="Asigna" value="<?php if($load==true){load_supervisor();}?>" required/>
 				      	</div>
 				  	</div>
 			  	
 					<div class="form-group col-sm-6 col-md-12">
 						<label for="areaDescription" class="control-label text-uppercase">Descripción</label>
-						<textarea name="descripcion" class="form-control input-sm" rows="3" id="areaDescription" placeholder="Descripción" required></textarea>
+						<textarea name="descripcion" class="form-control input-sm" rows="3" id="areaDescription" placeholder="Descripción" required><?php if($load==true){load_description();}?></textarea>
 					</div>
 
 					<div class="form-group col-sm-6 col-md-12">
 						<label for="areaObservations" class="control-label text-uppercase">Observaciones</label>
-						<textarea name="observaciones" class="form-control input-sm" rows="3" id="areaObservations" placeholder="Observaciones"></textarea>
+						<textarea name="observaciones" class="form-control input-sm" rows="3" id="areaObservations" placeholder="Observaciones"><?php if($load==true){load_observations();}?></textarea>
 					</div>
 				
 					<div class="form-group container-fluid">
@@ -84,10 +93,10 @@
 		  						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> <small>Crear</small></button>
 							</div>
 							<div class="btn-group btn-group-xs" role="group">
-		  						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <small>Limpiar</small></button>
+		  						<button id="clear" type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <small>Limpiar</small></button>
 		  					</div>
 		  					<div class="btn-group btn-group-xs" role="group">
-		  						<a role="button" class="btn btn-default disabled" href="#"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <small>Guardar</small></a>
+		  						<button id="save" type="button" class="btn btn-default disabled"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <small>Guardar</small></button>
 		  					</div>
 						</div>
 					</div>
@@ -141,17 +150,18 @@
 	  						<th>Asignatario <span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
 	  						<th>Opciones <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></th>
 	  					</tr>
+
 	  					<?php
   							if(isset($_GET['filter'])){
 		  						include("tickets/db_functions.php");
 		  						filter($_GET['filter']);
 
 								if(isset($_GET['option']) && isset($_GET['ref'])){
-									include("tickets/options.php");
+									//include("tickets/options.php");
 								}
   							}
-	  					?>
-	  				</table>
+  						?>
+  					</table>
   				</div>
 			</div>
 		</section>
@@ -167,12 +177,14 @@
 			<p class="navbar-text small">Design and theme under <a rel="license" target="_blank" hreflang="en" type="text/html" href="http://opensource.org/licenses/MIT">MIT License</a></p></i>
 		</div>
 		</div>
-		<div class="container-fluid">
+		<div id="load-zone" class="container-fluid">
 
 		</div>
 	</footer>
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!--<script type="text/javascript" src="js/manage-info.js"></script>
+	<script type="text/javascript" src="js/listener.js"></script>-->
 </body>
 </html>
