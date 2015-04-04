@@ -1,20 +1,19 @@
 <?php
 /**
- * Set of functions to insert a new task into Agnes project database, the bug tracking system
+ * Set of functions to insert a new ticket into Agnes project database, the bug tracking system
  *
  * new_ticket.php from https://github.com/cabrera-dcc/agnes_bts 
  *
- * @package agnes_bts.tickets
- * @author cabrera_dcc (http://cabrera-dcc/github.io)
+ * @author cabrera-dcc (http://cabrera-dcc/github.io)
  * @copyright Copyright (c) 2015, Daniel Cabrera Cebrero
  * @license GNU General Public License (GPLv3 - https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE)
- * @version Beta-1 (rev. 20150402)
+ * @version Beta-1 (rev. 20150403)
 */
 
 if(isset($_POST['nombre']) && isset($_POST['prioridad']) && isset($_POST['asignatario']) && isset($_POST['responsable']) && isset($_POST['descripcion'])){
 	if(checkData($_POST['nombre'],$_POST['prioridad'],$_POST['asignatario'],$_POST['responsable'],$_POST['descripcion'])){
-		require("db_functions.php");
-		insert_task($_POST['nombre'],$_POST['prioridad'],$_POST['asignatario'],$_POST['responsable'],$_POST['descripcion'],$_POST['observaciones']);
+		require_once("db_functions.php");
+		insert_ticket($_POST['nombre'],$_POST['prioridad'],$_POST['asignatario'],$_POST['responsable'],$_POST['descripcion'],$_POST['observaciones']);
 	}
 }
 
