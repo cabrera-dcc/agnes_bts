@@ -8,7 +8,7 @@
  * @author cabrera-dcc (http://cabrera-dcc/github.io)
  * @copyright Copyright (c) 2015, Daniel Cabrera Cebrero
  * @license GNU General Public License (GPLv3 - https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE)
- * @version Beta-1 (rev. 20150404)
+ * @version Beta-1 (rev. 20150406)
 */
 
 if(isset($_GET['option']) && isset($_GET['ref']) && isset($_GET['filter'])){
@@ -18,6 +18,7 @@ if(isset($_GET['option']) && isset($_GET['ref']) && isset($_GET['filter'])){
 	$filter = $_GET['filter'];
 
 	switch($option){
+		case "edit":
 		case "info":
 			$query = "SELECT id_ticket,nombre,prioridad,asignatario,responsable,descripcion,observaciones FROM tickets WHERE id_ticket=$id";
 			$rows = select($query);
@@ -37,13 +38,16 @@ if(isset($_GET['option']) && isset($_GET['ref']) && isset($_GET['filter'])){
 			header ("Location: ../index.php?filter=$filter");
 			break;
 		case "finish":
-			$query = "UPDATE tickets SET estado='Completado' WHERE id_ticket=$id";
+			$fecha = new DateTime();
+			$fecha = $fecha->format('Y/m/d H:i:s');
+			$query = "UPDATE tickets SET estado='Completado', fecha_finalizacion='$fecha' WHERE id_ticket=$id";
 			update($query);
 			header ("Location: ../index.php?filter=$filter");
 			break;
-		case "edit":
-			break;
 		case "delete":
+			$query = "UPDATE tickets SET estado='DELETED' WHERE id_ticket=$id";
+			update($query);
+			header ("Location: ../index.php?filter=$filter");
 			break;
 		default:
 			header ("Location: ../index.php");

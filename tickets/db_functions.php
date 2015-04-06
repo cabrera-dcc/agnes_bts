@@ -8,7 +8,7 @@
  * @author cabrera-dcc (http://cabrera-dcc/github.io)
  * @copyright Copyright (c) 2015, Daniel Cabrera Cebrero
  * @license GNU General Public License (GPLv3 - https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE)
- * @version Beta-1 (rev. 20150402)
+ * @version Beta-1 (rev. 20150406)
 */
 
 function connectDB()
@@ -29,10 +29,13 @@ function connectDB()
 
 function insert_ticket($nombre,$prioridad,$asignatario,$responsable,$descripcion,$observaciones)
 {
-	$query = "INSERT INTO tickets (nombre, estado, prioridad, asignatario, responsable, descripcion, observaciones)
-		VALUES ('".$nombre."','Pendiente','".$prioridad."','".$asignatario."','".$responsable."','".$descripcion."','".$observaciones."')";
+	$fecha = new DateTime();
+	$fecha = $fecha->format('Y/m/d H:i:s');
 
-	$db=connectDB();
+	$query = "INSERT INTO tickets (nombre, estado, prioridad, fecha_asignacion, asignatario, responsable, descripcion, observaciones)
+		VALUES ('".$nombre."','Pendiente','".$prioridad."','".$fecha."','".$asignatario."','".$responsable."','".$descripcion."','".$observaciones."')";
+
+	$db = connectDB();
 
 	if($db->query($query)){
 		echo "<p>Success</p>";
@@ -40,6 +43,14 @@ function insert_ticket($nombre,$prioridad,$asignatario,$responsable,$descripcion
 	else{
 		echo "<p>Error to insert</p>";
 	}
+}
+
+function update_ticket($nombre,$prioridad,$asignatario,$responsable,$descripcion,$observaciones,$reference)
+{
+	$query = "UPDATE tickets SET nombre='$nombre', prioridad='$prioridad', asignatario='$asignatario', responsable='$responsable', descripcion='$descripcion', observaciones='$observaciones' WHERE id_ticket=$reference";
+
+	$db = connectDB();
+	$db->query($query);
 }
 
 function select($query)
@@ -66,6 +77,7 @@ function filter($option)
 
 	switch($option){
 		case "all":
+			$query .= " WHERE estado!='DELETED'";
 			break;
 		case "pending":
 			$query .= " WHERE estado='Pendiente'";
