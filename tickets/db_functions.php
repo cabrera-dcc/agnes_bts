@@ -8,7 +8,7 @@
  * @author cabrera-dcc (http://cabrera-dcc/github.io)
  * @copyright Copyright (c) 2015, Daniel Cabrera Cebrero
  * @license GNU General Public License (GPLv3 - https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE)
- * @version Beta-1 (rev. 20150406)
+ * @version Beta-1 (rev. 20150407)
 */
 
 function connectDB()
@@ -89,13 +89,13 @@ function filter($option)
 			$query .= " WHERE estado='Completado'";
 			break;
 		case "high":
-			$query .= " WHERE prioridad='Alta'";
+			$query .= " WHERE prioridad='Alta' AND estado!='DELETED'";
 			break;
 		case "normal":
-			$query .= " WHERE prioridad='Normal'";
+			$query .= " WHERE prioridad='Normal' AND estado!='DELETED'";
 			break;
 		case "low":
-			$query .= " WHERE prioridad='Baja'";
+			$query .= " WHERE prioridad='Baja' AND estado!='DELETED'";
 			break;
 	}
 
