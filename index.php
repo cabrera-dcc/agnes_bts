@@ -8,7 +8,7 @@
 	<meta name="application-name" content="Agnes"/>
 	<meta name="description" content="Sistema de Seguimiento de Errores"/>
 	<meta name="author" content="Daniel Cabrera Cebrero (http://cabrera-dcc.github.io)"/>
-	<meta name="version" content="Beta-1 (rev. 20150406)"/>
+	<meta name="version" content="Beta-1 (rev. 20150407)"/>
 	<meta name="keywords" content="bts, bug, incident, traking, ticket"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>Agnes | BTS</title>
@@ -159,12 +159,10 @@
 	<footer class="navbar navbar-default navbar-static-bottom small">
 		<div class="container-fluid">
 			<div class="row">
-			<p class="navbar-text"><abbr title="Sistema de Seguimiento de Errores AGNES" class="initialism"><strong>Agnes</abbr> &#169; 2015 - <i>Bug Tracking System</i></strong></p>
-		</div>
-			<div class="row">
-			<i><p class="navbar-text small">Software licensed by <a target="_blank" rel="author" hreflang="es" type="text/html" href="http://cabrera-dcc.github.io">Daniel Cabrera Cebrero</a> under a GNU General Public License (<a rel="license" target="blank" hreflang="en" type="text/html" href="https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE">GPLv3</a>)</p>
-			<p class="navbar-text small">Design and theme under <a rel="license" target="_blank" hreflang="en" type="text/html" href="http://opensource.org/licenses/MIT">MIT License</a></p></i>
-		</div>
+				<p class="navbar-text"><abbr title="Sistema de Seguimiento de Errores AGNES" class="initialism"><strong>Agnes</abbr> &#169; 2015 - <i>Bug Tracking System</i></strong></p>
+				<i><p class="navbar-text small">Software licensed by <a target="_blank" rel="author" hreflang="es" type="text/html" href="http://cabrera-dcc.github.io">Daniel Cabrera Cebrero</a> under a GNU General Public License (<a rel="license" target="blank" hreflang="en" type="text/html" href="https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE">GPLv3</a>)</p>
+				<p class="navbar-text small">Design and theme under <a rel="license" target="_blank" hreflang="en" type="text/html" href="http://opensource.org/licenses/MIT">MIT License</a></p></i>
+			</div>
 		</div>
 	</footer>
 
