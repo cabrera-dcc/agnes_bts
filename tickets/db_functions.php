@@ -5,8 +5,7 @@
  * Functions to connect to MYSQL database using PHP Data Objects (PDO) and interact with it.
  * db_functions.php from https://github.com/cabrera-dcc/agnes_bts 
  *
- * @author cabrera-dcc (http://cabrera-dcc/github.io)
- * @copyright Copyright (c) 2015, Daniel Cabrera Cebrero
+ * @author cabrera-dcc (http://cabrera-dcc.github.io)
  * @license GNU General Public License (GPLv3 - https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE)
  * @version Beta-1 (rev. 20150407)
 */

@@ -5,8 +5,7 @@
  * Includes links to be displayed as options.
  * option_icons.php from https://github.com/cabrera-dcc/agnes_bts
  *
- * @author cabrera-dcc (http://cabrera-dcc/github.io)
- * @copyright Copyright (c) 2015, Daniel Cabrera Cebrero
+ * @author cabrera-dcc (http://cabrera-dcc.github.io)
  * @license GNU General Public License (GPLv3 - https://github.com/cabrera-dcc/agnes_bts/blob/master/LICENSE)
  * @version Beta-1 (rev. 20150403)
 */
